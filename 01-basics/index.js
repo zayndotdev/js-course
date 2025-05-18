@@ -4,10 +4,12 @@
 
 // console.log(`Hello, This is ${myName} and I am ${age} years old.`);
 
-function something() {
-  console.log("Hello, World!!!");
-  var name = "zayn";
-  console.log(name);
-}
+// function something() {
+//   console.log("Hello, World!!!");
+//   var name = "zayn";
+//   console.log(name);
+// }
 
-something();
+// something();
+
+console.log(null === null);
