@@ -1,4 +1,4 @@
-const API_KEY = "2ce4d8ac12e34f8cabf124157243112";
+const API_KEY = "";
 const BASE_URL = "https://api.weatherapi.com/v1/current.json";
 
 // DOM Elements
