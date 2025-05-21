@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock Project</title>
+  </head>
+  <body>
+    <div>
+      <h1 id="time"></h1>
+    </div>
+    <button class="start-btn">Start</button>
+    <button class="stop-btn">Stop</button>
+
+    <script>
+      // JavaScript
+      document.addEventListener("DOMContentLoaded", () => {
+        const clockElement = document.getElementById("time");
+        const stopEl = document.querySelector(".stop-btn");
+        const startEl = document.querySelector(".start-btn");
+
+        function getFormattedTime() {
+          const now = new Date();
+          let hours = now.getHours();
+          const minutes = now.getMinutes();
+          const seconds = now.getSeconds();
+          const ampm = hours >= 12 ? "PM" : "AM";
+
+          hours = hours % 12 || 12;
+
+          return `${padZero(hours)}:${padZero(minutes)}:${padZero(
+            seconds
+          )} ${ampm}`;
+        }
+
+        function padZero(number) {
+          return number.toString().padStart(2, "0");
+        }
+
+        function updateClock() {
+          clockElement.textContent = getFormattedTime();
+        }
+
+        // Initial call to display time immediately
+        updateClock();
+        let clockInterval = setInterval(updateClock, 1000);
+        stopEl.addEventListener("click", function () {
+          clearInterval(clockInterval);
+        });
+        startEl.addEventListener("click", function () {
+          clockInterval = setInterval(updateClock, 1000);
+        });
+      });
+    </script>
+  </body>
+</html>
