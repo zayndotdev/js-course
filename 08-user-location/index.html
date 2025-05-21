@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Getting user location</h1>
+    <button class="btn">Get Location</button>
+
+    <hr />
+    <br /><br />
+    <div class="search-result">
+      <p class="city-name"></p>
+      <p class="city-temp"></p>
+    </div>
+
+    <script>
+      const API_KEY = "";
+      const btn = document.querySelector(".btn");
+
+      //   const getWeatherData
+      const getData = async (url) => {
+        const res = await fetch(url);
+
+        if (!res.ok) {
+          throw new Error("Error in fetching data", data.message);
+        }
+        const data = await res.json();
+        console.log(data);
+        return data;
+      };
+
+      //   update UI
+      const updateUI = (data) => {};
+
+      //   getting user location
+      btn.addEventListener("click", async () => {
+        try {
+          const userLocationData =
+            await navigator.geolocation.getCurrentPosition((data) => {
+              const lat = data.coords.latitude;
+              const lon = data.coords.longitude;
+              console.log(data);
+              const url = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lat},${lon}&aqi=no`;
+              getData(url);
+            });
+        } catch (err) {
+          alert("Error in getting user location");
+        }
+      });
+    </script>
+  </body>
+</html>
